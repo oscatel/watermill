@@ -203,6 +203,8 @@ func (p EventGroupProcessor) routerHandlerGroupFunc(handlers []GroupEventHandler
 	return func(msg *message.Message) error {
 		messageEventName := p.config.Marshaler.NameFromMessage(msg)
 
+		handled := false
+
 		for _, handler := range handlers {
 			initEvent := handler.NewEvent()
 			expectedEventName := p.config.Marshaler.Name(initEvent)
@@ -249,7 +251,11 @@ func (p EventGroupProcessor) routerHandlerGroupFunc(handlers []GroupEventHandler
 				return err
 			}
 
-			//return nil
+			handled = true
+		}
+
+		if handled {
+			return nil
 		}
 
 		if !p.config.AckOnUnknownEvent {
