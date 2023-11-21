@@ -249,7 +249,7 @@ func (p EventGroupProcessor) routerHandlerGroupFunc(handlers []GroupEventHandler
 				return err
 			}
 
-			return nil
+			//return nil
 		}
 
 		if !p.config.AckOnUnknownEvent {
