@@ -32,6 +32,9 @@ type Message struct {
 	// Metadata is marshaled and will be saved to the PubSub.
 	Metadata Metadata
 
+	// Headers contains the message headers allowing for additional headers other than strings
+	Headers Headers
+
 	// Payload is the message's payload.
 	Payload Payload
 
